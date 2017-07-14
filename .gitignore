@@ -35,3 +35,4 @@ vignettes/*.pdf
 # reproducable subdirs
 _book
 _bookdown_files
+.Rproj.user

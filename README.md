@@ -1,9 +1,10 @@
-Hier entsteht das Buch-Projekt "Handgemacht Mathematik". Darin werden einige Methoden vorgestellt, wie man ohne Taschenrechner nur mit Papier und Stift Aufgaben (z.B. der einfachen Ingenuersmathematik) lösen kann.
+# Handgemachte Mathematik
 
-##
+*Mathematik ohne (Taschen-)Rechner hat eine Zukunft und vor allem eine lange Tradition!*
 
-The key is the `site` setting in `index.Rmd`. If you want to build the book in RStudio, just click the `Build Book` button in the `Build` pane, otherwise call the function in R:
+Hier entsteht das Buch-Projekt "Handgemachte Mathematik".
+Darin werden einige Methoden vorgestellt, wie man ohne Taschenrechner, also nur mit Papier und Stift, Aufgaben (z.B. der einfachen Ingenieursmathematik) lösen kann.
 
-```r
-bookdown::render_book('index.Rmd', 'all')
-```
+## Geschichtliches
+
+*Start des Projeks:* 17. Juli 2017
