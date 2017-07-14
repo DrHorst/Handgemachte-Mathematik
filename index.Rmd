@@ -1,0 +1,14 @@
+---
+title: "Handgemachte Mathematik"
+author: "Norman Markgraf"
+site: bookdown::bookdown_site
+documentclass: book
+---
+# Vorwort {-}
+
+Es scheint ein Anachronismus zu sein, aber gerade in Zeiten, in denen Mathematik mehr und mehr mit dem Computer gemacht wird, sollte man sich auch der Methoden widmen, die nur mit Papier und Stift auskommen.
+Noch gibt es einige Ingeneursmathematikkurse, in denen ohne Rechner, ja sogar ohne Taschenrechner gearbeitet werden soll. Jedoch gibt es immer weniger Menschen, ja sogar Mathematiker, die ohne weitere Hilfsmittel auskommen. Dieses Werk soll daher als eine Art Wissensspeicher dienen und versuchen einige der alten Rechenkünste zu bewahren.
+
+Beginn des Projekts: 14. Juli 2017 in Essen
+
+

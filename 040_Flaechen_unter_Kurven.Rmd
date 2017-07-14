@@ -1,0 +1,124 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Flächen unter Kurven
+
+Nehmen wir an, wir möchten den Fächeninhalt zwichen einer Kurve und der X-Achse bestimmen.
+
+Sei also $f(x) = \frac1{6}x^3-x^2-\frac1{6}x+5$, eine kubische, ganz-rationale Funktion.
+Diese hat maximal drei Nullstellen und somit bis zu zwei Flächen, die wir berücksichtigen müssen.
+
+Zur Verdeutlichung hier schon einmal ein Plot der Funktion:
+
+```{r, echo=FALSE}
+library(ggplot2) 
+#  Funktion definieren
+func <- function(x) {
+  return(1/6*x*x*x-x*x-1/6*x+5)
+}
+# Bereich für den Plot ausfählen 
+x <- seq(-5, 10, 0.1)
+y <- func(x)
+
+plot(NA, xlim=c(-3,6.1), ylim=c(-10, 10), xlab="x", ylab="f(x)")
+curve(func, from = -3, to = 6, add=TRUE)
+abline(h=0)
+abline(v=0)
+#points(0, func(0), pch=15)
+````
+Zunächst müssen wir die Nullstellen der Funktion finden. Um das Horner-Schema hier einfach anwenden zukönnen und keine Brücke zu produzieren bestimmen wir die Nullstellen besser von $g(x)=6\cdot f(x)=x^3-6x^2-x+30$. Der Vorteil ist, dass $g(x)$ im Horner-Schema selbst keine Brüche erzeugt, aber die gleichen Nummstellen wie $f(x)$ hat.
+
+Durch ausprobieren erhalten wir bei $x=5$ die erste Nullstellen und beginnen nun mit dem Horner-Schema:
+
+-----------------------------
+           1   -6   -1    30 
+ ------  ---- ---- ---- -----      
+  x=5      /    5   -5   -30
+
+           1   -1   -6     0
+
+  x=3      /    3    6       
+
+           1    2    0     
+           
+  x=-2     /   -2            
+
+           1    0            
+-----------------------------
+ 
+Somit ist Linearfaktorzerlegung von $g(x) = (x+2) (x-3) (x-5)$ und $f(x) = \frac{g(x)}{6} = \frac{1}{6} (x+2) (x-3) (x-5)$.
+
+Der Gesamtflächeninhalt $A_{ges}$ ergibt sich also aus den beiden Flächeninhalten 
+$$A_1 = \left| \int_{-2}^3 f(x) dx \right| \quad \text{ und } \quad A_2 = \left|\int_{3}^{5} f(x) dx \right|$$
+
+Wir bestimmen dazu eine Stammfunktion $F(x)$ mit $F'(x) = f(x)$ durch 'Aufleitung' und setzen das konstante Glied $C=0$:
+
+\begin{align*}
+F(x) &= \int f(x) dx = \int \frac1{6}x^3-x^2-\frac1{6}x+5 dx\\
+     &= \frac16 \int x^3 dx - \int x^2 dx - \frac16 \int x dx + 5 \int 1 dx \\
+     &= \frac16 \cdot \frac14 x^4 - \frac13 x^3 - \frac16 \frac12 x^2 + 5 x + C \\
+     &= \frac1{24} x^4 - \frac13 x^3 - \frac1{12} x^2 + 5x \\
+\end{align*}
+
+Wir benötigen die Werte von $F(-2)$, $F(3)$ und $F(5)$ um die Integrale zu bestimmen. Dazu können wir wieder das Horner-Schema verwenden. Da wir aber Brüche vermeiden wollen, werten wir die Funktion 
+
+$$G(x)= 24 \cdot F(x) = x^4 - 8 x^3 - 2 x^2 + 120x + 0$$ 
+
+an den gesuchten Stellen aus:
+
+----------------------------------
+        1   -8   -2    120    0
+------ --- ---- ----  ----- ------
+ x=-2   /   -2   20    -36   -176
+ 
+        1   -10  18     84   -176
+----------------------------------
+
+Damit ist $F(-2) = \frac1{24} G(-2) = \frac{-176}{24}$.
+
+Weiter ist
+
+-----------------------------------
+        1   -8   -2     120    0
+------ --- ---- -----  ----- ------
+ x= 3   /    3   -15    -51   207
+ 
+        1    -5  -17     69   207
+----------------------------------
+
+und somit $F(3) = \frac1{24} G(3) = \frac{207}{24}$.
+
+Sowie
+
+-----------------------------------
+        1   -8   -2     120    0
+------ --- ---- -----  ----- ------
+ x= 5   /    5   -15    -85   175
+ 
+        1    -3  -17     35   175
+----------------------------------
+
+welches $F(5) = \frac1{24} G(3) = \frac{175}{24}$ ergibt.
+
+Wir eralten somit
+
+$$A_1 = \left| \left[ F(x) \right]_{-2}^3 \right| 
+      = \left| F(3)-F(-2) \right|
+      = \left| \frac{207}{24} - \frac{-176}{24} \right|
+      = \left| \frac{383}{24} \right| 
+      = 15\frac{23}{24}$$
+
+und
+
+$$A_2 = \left| \left[ F(x) \right]_{3}^5 \right| 
+      = \left| F(5)-F(3) \right|
+      = \left| \frac{175}{24} - \frac{207}{24} \right|
+      = \left| \frac{-32}{24} \right|
+      = \left| -1\frac{8}{24} \right|
+      = 1\frac13$$
+      
+Damit beträgt die Gesamtfläche also
+
+$$A_{ges} = A_1 + A_2 = 15\frac{23}{24} + 1\frac{8}{24} = 17\frac{7}{24} = 17,291\bar{6}.$$
