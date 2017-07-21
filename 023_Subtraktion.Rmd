@@ -1,0 +1,33 @@
+
+# Subtraktion
+
+## Subtraktion mit verliebten Zahlen
+
+Nein, das ist keine Numerologie.
+*Verliebte Zahlen* sind eher ein Konzept der Grundschule um das Subtrahieren einfacher zu machen. 
+Eigentlich wäre hier der Begriff *verliebte Ziffern* angebrachter, aber ...
+
+Zunächst merkt man sich: *Zwei Zahlen (1-9) sind **verliebt**, wenn ihre Summe 10 ergibt*
+
+Es sind also
+
+1 und 9
+
+2 und 8
+
+3 und 7
+
+4 und 6
+
+5 und 5
+
+6 und 4
+
+7 und 3
+
+8 und 2
+
+9 und 1
+
+in einander verliebt. 
+
